@@ -2,32 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("boxicons/css/boxicons.min.css");
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --hue: 0%;
+  --sat: 0%;
+  --body-color: hsl(var(--hue), var(--sat), 98%);
+  --text-color: hsl(var(--hue), var(--sat), 46%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --hue: 0%;
+    --sat: 0%;
+    --body-color: hsl(var(--hue), var(--sat), 98%);
+    --text-color: hsl(var(--hue), var(--sat), 46%);
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--body-color);
+}
+
+.custom-grid {
+  
+  grid-template-columns: 116px repeat(2, 1fr);
+}
+
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .custom-grid {
+    @apply grid grid-cols-[116px_1fr_1fr];
   }
 }
