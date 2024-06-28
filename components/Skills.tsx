@@ -5,24 +5,24 @@ import { SkillsObject } from "@/types/componentTypes";
 const skillsFrontend: SkillsObject = {
   skillType: "Frontend",
   skills: [
-    { name: "HTML", iconName: "html5" },
-    { name: "React", iconName: "react" },
-    { name: "Git", iconName: "git" },
-    { name: "Redux", iconName: "redux" },
-    { name: "Typescript", iconName: "typescript" },
-    { name: "Javascript", iconName: "javascript" },
+    { name: "HTML", iconName: "bxl-html5" },
+    { name: "React", iconName: "bxl-react" },
+    { name: "Git", iconName: "bxl-git" },
+    { name: "Redux", iconName: "bxl-redux" },
+    { name: "Typescript", iconName: "bxl-typescript" },
+    { name: "Javascript", iconName: "bxl-javascript" },
   ],
 };
 
 const skillsBackend: SkillsObject = {
   skillType: "Backend",
   skills: [
-    { name: "Node JS", iconName: "nodejs" },
-    { name: "Python", iconName: "python" },
-    { name: "Docker", iconName: "docker" },
-    { name: "AWS", iconName: "aws" },
-    { name: "MongoDB", iconName: "mongodb" },
-    { name: "PostgreSQL", iconName: "postgresql" },
+    { name: "Node JS", iconName: "bxl-nodejs" },
+    { name: "Python", iconName: "bxl-python" },
+    { name: "Docker", iconName: "bxl-docker" },
+    { name: "AWS", iconName: "bxl-aws" },
+    { name: "MongoDB", iconName: "bxl-mongodb" },
+    { name: "PostgreSQL", iconName: "bxl-postgresql" },
   ],
 };
 

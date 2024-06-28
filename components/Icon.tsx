@@ -16,7 +16,7 @@ const Icon: React.FC<IconProps> = ({
 }) => {
   return (
     <i
-      className={`bx bxl-${name} ${className}`}
+      className={`bx ${name} ${className}`}
       style={{ fontSize: size, color }}
     />
   );
