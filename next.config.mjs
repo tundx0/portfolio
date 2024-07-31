@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "media.licdn.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "files.fm",
+        pathname: "**",
+      }
     ],
   },
 };
