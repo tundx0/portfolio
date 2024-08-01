@@ -1,7 +1,17 @@
+"use client";
 import Image from "next/image";
 import { UilFileAlt } from "@iconscout/react-unicons";
 
-const About = () => {
+const About: React.FC = () => {
+  const handleDownloadClick = () => {
+    const link = document.createElement("a");
+    link.href =
+      "https://drive.google.com/uc?export=download&id=11FkKbUp6uVv9xKJ2hpGGx3rmrghYlS35";
+    link.download = "cv.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <section
       id="about"
@@ -26,7 +36,10 @@ const About = () => {
             working on diverse projects that have honed my skills in both
             front-end and back-end development.
           </p>
-          <button className="w-40 flex gap-2 items-center justify-center rounded-xl text-white bg-black px-2 py-3 font-medium">
+          <button
+            onClick={handleDownloadClick}
+            className="w-40 flex gap-2 items-center justify-center rounded-xl text-white bg-black px-2 py-3 font-medium"
+          >
             Download CV
             <UilFileAlt />
           </button>
