@@ -32,7 +32,7 @@ const About: React.FC = () => {
           <p className=" text-wrap">
             I started my journey in web development with a strong curiosity for
             how web technologies work together to create seamless user
-            experiences. Over the past 1.5 years, I've had the privilege of
+            experiences. Over the past 1.5 years, I&apos;ve had the privilege of
             working on diverse projects that have honed my skills in both
             front-end and back-end development.
           </p>
