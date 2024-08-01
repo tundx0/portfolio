@@ -24,9 +24,7 @@ const Hero = () => {
         alt="image"
         width={300}
         height={300}
-        src={
-          "https://media.licdn.com/dms/image/D4D03AQGLs2zcc3ztvQ/profile-displayphoto-shrink_800_800/0/1700674801701?e=1721865600&v=beta&t=IcFfX00wgi0w3FWC7PboiHwMBDHMLO45QK9BH7MPvKM"
-        }
+        src="/ola_pic.png"
       />
       <div className="w-full col-span-2 md:col-auto">
         <h1 className="text-5xl pb-2">Olatunde Adegboyebo</h1>

@@ -24,9 +24,7 @@ const About: React.FC = () => {
           alt="image"
           width={300}
           height={300}
-          src={
-            "https://media.licdn.com/dms/image/D4D03AQGLs2zcc3ztvQ/profile-displayphoto-shrink_800_800/0/1700674801701?e=1721865600&v=beta&t=IcFfX00wgi0w3FWC7PboiHwMBDHMLO45QK9BH7MPvKM"
-          }
+          src="/ola_pic.png"
         />
         <div className="flex flex-col gap-4 text-gray-400">
           <p className=" text-wrap">
