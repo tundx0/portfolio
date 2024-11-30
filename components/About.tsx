@@ -6,7 +6,7 @@ const About: React.FC = () => {
   const handleDownloadClick = () => {
     const link = document.createElement("a");
     link.href =
-      "https://drive.google.com/uc?export=download&id=11FkKbUp6uVv9xKJ2hpGGx3rmrghYlS35";
+      "https://drive.google.com/uc?export=download&id=1gk5T1Y6-K999oql3j8XbKms9f2AJ1XjJ";
     link.download = "cv.pdf";
     document.body.appendChild(link);
     link.click();
