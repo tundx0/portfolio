@@ -1,81 +1,106 @@
 "use client";
 
 import { NavItems } from "@/lib/utils";
-import { useState } from "react";
-import { UilBars, UilMultiply } from "@iconscout/react-unicons";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = (): void => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const [scrolled, setScrolled] = useState(false);
 
-  const renderMenuButton = (): JSX.Element =>
-    isMenuOpen ? (
-      <button onClick={toggleMenu} className="md:hidden" type="button">
-        <UilMultiply className="h-8 w-8" />
-      </button>
-    ) : (
-      <button onClick={toggleMenu} className="md:hidden" type="button">
-        <UilBars className="h-8 w-8" />
-      </button>
-    );
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const closeMenu = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      setIsMenuOpen(false);
-    }
-  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <section className="bg-[#fff] w-full sticky top-0 z-[9999]">
-      <nav className="flex h-16 justify-between items-center gap-4 lg:mx-6 mx-4">
-        <a href="#" className="text-lg font-bold">
-          Ola
+    <header
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
+        scrolled
+          ? "bg-[rgba(2,8,23,0.92)] backdrop-blur-xl border-b border-[rgba(0,240,255,0.12)] shadow-[0_4px_40px_rgba(0,240,255,0.06)]"
+          : "bg-transparent"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto flex h-16 justify-between items-center px-6 lg:px-12">
+        {/* Logo */}
+        <a
+          href="#home"
+          className="relative font-cyber text-xl font-bold text-[#00f0ff] tracking-wider"
+          style={{ textShadow: "0 0 20px rgba(0,240,255,0.6)" }}
+        >
+          <span className="opacity-40 text-sm mr-1">&lt;</span>
+          OLA
+          <span className="opacity-40 text-sm ml-1">/&gt;</span>
+          <span className="absolute -bottom-0.5 left-0 w-full h-px bg-gradient-to-r from-[#00f0ff] to-[#b900ff] opacity-60" />
         </a>
-        <div className="hidden md:flex flex-col md:flex-row gap-8">
-          {NavItems.map((item) => {
-            const IconComponent = item.icon;
-            return (
-              <li key={item.link} className="flex flex-col items-center">
-                <div className="md:hidden">
-                  <IconComponent />
-                </div>
-                <a href={item.link} className="ml-2">
-                  {item.name}
-                </a>
-              </li>
-            );
-          })}
-        </div>
-        <div className="flex md:hidden">{renderMenuButton()}</div>
+
+        {/* Desktop Nav */}
+        <ul className="hidden md:flex items-center gap-8">
+          {NavItems.map((item) => (
+            <li key={item.link}>
+              <a href={item.link} className="nav-link">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <a
+          href="#contact"
+          className="hidden md:inline-flex btn-cyber text-xs"
+        >
+          Hire Me
+        </a>
+
+        {/* Mobile Burger */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`block w-6 h-px bg-[#00f0ff] transition-all duration-300 ${
+              isMenuOpen ? "rotate-45 translate-y-2.5" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-px bg-[#00f0ff] transition-all duration-300 ${
+              isMenuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-px bg-[#00f0ff] transition-all duration-300 ${
+              isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
+            }`}
+          />
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div
+          className="md:hidden fixed inset-0 bg-[rgba(2,8,23,0.96)] backdrop-blur-xl z-[9990] flex flex-col items-center justify-center gap-8"
           onClick={closeMenu}
-          className="md:hidden fixed inset-0 bg-black w-full h-screen bg-opacity-50 flex justify-center items-center"
         >
-          <div className="bg-white p-8 rounded-md shadow-lg relative">
-            <button onClick={toggleMenu} className="absolute top-4 right-4">
-              <UilMultiply />
-            </button>
-            <ul className="flex w-80 flex-col gap-4">
-              {NavItems.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                  <li key={item.link} className="flex items-center">
-                    <IconComponent />
-                    <a href={item.link} className="ml-2" onClick={toggleMenu}>
-                      {item.name}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {NavItems.map((item) => (
+            <a
+              key={item.link}
+              href={item.link}
+              onClick={closeMenu}
+              className="font-cyber text-2xl font-bold text-[#7a9bbf] hover:text-[#00f0ff] transition-colors"
+            >
+              {item.name}
+            </a>
+          ))}
+          <a href="#contact" onClick={closeMenu} className="btn-cyber mt-4">
+            Hire Me
+          </a>
         </div>
       )}
-    </section>
+    </header>
   );
 };
 
