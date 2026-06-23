@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
         {/* Left — Contact Methods */}
         <div className="space-y-6">
           <div className="space-y-2">
-            <h3 className="font-cyber text-xl font-bold text-white">Let's collaborate</h3>
+            <h3 className="font-cyber text-xl font-bold text-white">Let&apos;s collaborate</h3>
             <p className="text-[#7a9bbf] leading-relaxed">
               Whether you have a project in mind, want to discuss Web3 architecture, 
               or just want to say hi — my inbox is always open.

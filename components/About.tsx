@@ -74,7 +74,7 @@ const About = () => {
         <div className="space-y-6">
           <div className="space-y-4 text-[#7a9bbf] leading-relaxed">
             <p>
-              I'm a <span className="text-[#00f0ff] font-medium">Full Stack & Blockchain Engineer</span> based
+              I&apos;m a <span className="text-[#00f0ff] font-medium">Full Stack &amp; Blockchain Engineer</span> based
               in Lagos, Nigeria. I specialize in building production-grade Web3 payment infrastructure,
               EVM-based decentralized applications, and scalable backend systems.
             </p>
