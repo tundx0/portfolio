@@ -134,7 +134,7 @@ const Hero = () => {
                 src="/ola_pic.png"
                 alt="Olatunde Adegboyebo"
                 fill
-                className="object-cover grayscale-[15%]"
+                className="object-cover"
                 priority
               />
             </div>
