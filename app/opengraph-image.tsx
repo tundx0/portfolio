@@ -106,7 +106,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ fontSize: 24, color: INK_MUTED }}>
-            olaportfolio.vercel.app
+            olaa.dev
           </div>
           <div style={{ fontSize: 24, color: INK_MUTED }}>Lagos, Nigeria</div>
         </div>
