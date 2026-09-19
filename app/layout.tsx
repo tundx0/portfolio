@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://olaportfolio.vercel.app";
+const SITE_URL = "https://olaa.dev";
 const NAME = "Olatunde Adegboyebo";
 const ROLE = "Full Stack & Backend Engineer";
 const DESCRIPTION =
