@@ -11,19 +11,18 @@ import {
 
 export default function Home() {
   return (
-    <main className="bg-[#020817] min-h-screen">
+    <main className="bg-paper min-h-screen">
       <Header />
       <Hero />
-      {/* Neon divider */}
-      <div className="neon-divider" />
+      <div className="hairline max-w-7xl mx-auto" />
       <About />
-      <div className="neon-divider" />
+      <div className="hairline max-w-7xl mx-auto" />
       <Skills />
-      <div className="neon-divider" />
+      <div className="hairline max-w-7xl mx-auto" />
       <Qualification />
-      <div className="neon-divider" />
+      <div className="hairline max-w-7xl mx-auto" />
       <Portfolio />
-      <div className="neon-divider" />
+      <div className="hairline max-w-7xl mx-auto" />
       <Contact />
       <Footer />
     </main>

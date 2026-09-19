@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Olatunde Adegboyebo — Full Stack & Blockchain Engineer",
+  title: "Olatunde Adegboyebo — Full Stack & Backend Engineer",
   description:
-    "Full Stack & Blockchain Engineer specializing in Web3, EVM smart contracts, decentralized payment systems, and scalable backend architectures. Based in Lagos, Nigeria.",
-  keywords: ["Full Stack Developer", "Blockchain Engineer", "Web3", "Solidity", "Next.js", "TypeScript"],
+    "Full Stack & Backend Engineer specializing in scalable APIs, distributed systems, databases, and cloud infrastructure with Node.js, TypeScript, PostgreSQL, and Docker. Based in Lagos, Nigeria.",
+  keywords: ["Full Stack Developer", "Backend Engineer", "Node.js", "TypeScript", "PostgreSQL", "APIs", "System Design"],
   openGraph: {
-    title: "Olatunde Adegboyebo — Full Stack & Blockchain Engineer",
-    description: "Building the decentralized future, one block at a time.",
+    title: "Olatunde Adegboyebo — Full Stack & Backend Engineer",
+    description: "Building reliable, scalable systems that ship to production.",
     type: "website",
     url: "https://olaportfolio.vercel.app",
   },
@@ -21,11 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {/* Scanline overlay for cyberpunk effect */}
-        <div className="scanlines" aria-hidden="true" />
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
