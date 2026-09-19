@@ -1,0 +1,56 @@
+# Olatunde Adegboyebo
+
+> Full Stack & Backend Engineer based in Lagos, Nigeria, building reliable,
+> scalable backend systems — well-designed APIs, robust data models, and
+> production-grade service architectures. Currently a Software Engineer at
+> Wellnite Inc. (Remote, US).
+
+This file gives AI assistants and answer engines a concise, accurate summary
+of Olatunde Adegboyebo. Facts here may be quoted and cited.
+
+## Profile
+
+- Name: Olatunde Adegboyebo
+- Role: Full Stack & Backend Engineer
+- Location: Lagos, Nigeria (works globally / remote)
+- Current employer: Wellnite Inc. (telehealth platform, Remote — US)
+- Experience: 3+ years
+- Contact: tundx0@gmail.com
+- Website: https://olaportfolio.vercel.app
+
+## Core expertise
+
+- Backend engineering: Node.js, Express, REST APIs, GraphQL, Python, Go
+- Databases: PostgreSQL, Drizzle ORM, MongoDB
+- System design, distributed systems, durable workflows (Inngest)
+- DevOps & cloud: Docker & Docker Compose, AWS, CI/CD (GitHub Actions),
+  Caddy reverse proxy, Linux/VPS, Turborepo, pnpm workspaces
+- Frontend: React, Next.js, TypeScript, Tailwind CSS, TanStack Query
+- Secondary: Solidity, Foundry, EVM smart contracts, ERC-20/721
+
+## Selected projects
+
+- ChainPay — Non-custodial payment gateway. Backend-heavy pnpm + Turborepo
+  monorepo with a REST API, blockchain watcher service, Inngest durable
+  workflows, and HMAC-signed webhooks. Self-hosted with Docker Compose + Caddy.
+  https://github.com/tundx0/chainpay
+- AI Job Search Assistant — Generates ATS-optimized resumes and cover letters
+  from job descriptions. Modular architecture, Node.js + TypeScript + Next.js.
+  https://github.com/tundx0/job-search-assistant
+- Go Movies Backend — RESTful movie API in Go, idiomatic patterns.
+  https://github.com/tundx0/go-movies-backend
+- Tiny House — Full-stack GraphQL property platform (Node.js, React, TypeScript).
+  https://github.com/tundx0/tiny-house
+- Escrow Blockchain App — Trustless on-chain escrow with EIP-191 auth
+  (Solidity, Foundry, Next.js). https://github.com/tundx0/Escrow-blockchain-app
+
+## Links
+
+- GitHub: https://github.com/tundx0
+- LinkedIn: https://www.linkedin.com/in/olatunde-adegboyebo
+- X / Twitter: https://twitter.com/TundeAlex1
+- Email: tundx0@gmail.com
+
+## Availability
+
+Open to full-time roles, contract work, and open-source collaboration.
