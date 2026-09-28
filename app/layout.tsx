@@ -81,7 +81,7 @@ const jsonLd = {
       givenName: "Olatunde",
       familyName: "Adegboyebo",
       url: SITE_URL,
-      image: `${SITE_URL}/ola_pic.png`,
+      image: `${SITE_URL}/olatunde-portrait.webp`,
       jobTitle: ROLE,
       description: DESCRIPTION,
       email: "mailto:tundx0@gmail.com",
