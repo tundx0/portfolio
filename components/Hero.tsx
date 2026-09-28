@@ -124,17 +124,19 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* RIGHT — Avatar */}
+        {/* RIGHT — Portrait */}
         <div className="flex justify-center items-center order-1 md:order-2">
-          <div className="relative">
-            {/* Enso ring */}
-            <div className="enso absolute -inset-5 md:-inset-7" aria-hidden="true" />
-            <div className="relative w-60 h-60 md:w-80 md:h-80 rounded-full overflow-hidden border border-[color:var(--line)]">
+          <div className="relative w-64 md:w-80">
+            {/* Enso ring — sits behind the portrait's transparent edges */}
+            <div className="enso absolute inset-0 m-auto w-56 h-56 md:w-72 md:h-72 rounded-full" aria-hidden="true" />
+
+            {/* Portrait — transparent cutout, uncropped */}
+            <div className="relative w-full aspect-[1305/1205]">
               <Image
-                src="/ola_pic.png"
+                src="/olatunde-portrait.webp"
                 alt="Olatunde Adegboyebo"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>

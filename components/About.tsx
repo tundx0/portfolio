@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 
 const About = () => {
   const handleDownloadClick = () => {
@@ -29,25 +28,17 @@ const About = () => {
         <h2 className="section-title">Who I Am</h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-16 items-start">
-        {/* Image Side */}
-        <div className="relative flex justify-center md:justify-start">
-          <div className="relative">
-            {/* Thin offset frame */}
-            <div className="absolute -top-4 -left-4 w-full h-full border border-[color:var(--line)]" aria-hidden="true" />
-            <div className="relative w-64 h-80 md:w-72 md:h-96 overflow-hidden border border-[color:var(--line)] bg-paper-2">
-              <Image
-                src="/ola_pic.png"
-                alt="Olatunde Adegboyebo"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
+      <div className="relative max-w-3xl">
+        {/* Decorative kanji accent — 私 ("I / myself") */}
+        <span
+          className="hidden md:block absolute -top-16 -right-8 lg:-right-16 font-mincho text-ink-faint/15 text-[10rem] leading-none select-none pointer-events-none"
+          aria-hidden="true"
+        >
+          私
+        </span>
 
-        {/* Content Side */}
-        <div className="space-y-6">
+        {/* Content */}
+        <div className="relative space-y-6">
           <div className="space-y-5 text-ink-soft leading-relaxed font-light">
             <p>
               I&apos;m a{" "}
