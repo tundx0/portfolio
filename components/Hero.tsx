@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { SocialIcons } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import SakuraField from "@/components/ui/SakuraField";
 
 const ROLES = [
   "Full Stack Engineer",
@@ -12,7 +13,10 @@ const ROLES = [
   "Cloud & DevOps",
 ];
 
+const NAME_LINES = ["Olatunde", "Adegboyebo"];
+
 const Hero = () => {
+  const portraitRef = useRef<HTMLDivElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -42,11 +46,33 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [charIndex, deleting, roleIndex]);
 
+  // Portrait tilts gently toward the cursor.
+  useEffect(() => {
+    const el = portraitRef.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const onMove = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const x = e.clientX / window.innerWidth - 0.5;
+        const y = e.clientY / window.innerHeight - 0.5;
+        el.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+      });
+    };
+    window.addEventListener("pointermove", onMove);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, []);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
+      <SakuraField />
+
       {/* Faint vertical Japanese accent — negative space (ma) */}
       <span
         className="hidden lg:block absolute top-1/2 right-12 -translate-y-1/2 writing-vertical font-mincho text-ink-faint/50 text-sm tracking-[0.4em] select-none pointer-events-none"
@@ -55,7 +81,7 @@ const Hero = () => {
         全 ての コード は 静 けさ から
       </span>
 
-      <div className="max-w-7xl w-full mx-auto px-6 lg:px-12 py-32 grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-7xl w-full mx-auto px-6 lg:px-12 py-32 grid md:grid-cols-2 gap-16 items-center">
         {/* LEFT — Text Content */}
         <div className="space-y-8 animate-fade-up order-2 md:order-1">
           {/* Status */}
@@ -71,10 +97,24 @@ const Hero = () => {
             <p className="section-label">
               Hello <span className="jp">はじめまして</span>
             </p>
-            <h1 className="font-mincho text-4xl md:text-5xl xl:text-6xl font-semibold leading-[1.15] text-ink">
-              Olatunde
-              <br />
-              Adegboyebo
+            <h1
+              className="font-mincho text-4xl md:text-5xl xl:text-6xl font-semibold leading-[1.15] text-ink"
+              aria-label={NAME_LINES.join(" ")}
+            >
+              {NAME_LINES.map((line, li) => (
+                <span key={line} className="block" aria-hidden="true">
+                  {line.split("").map((ch, ci) => (
+                    <span key={ci} className="rise-mask">
+                      <span
+                        className="rise-char"
+                        style={{ animationDelay: `${0.25 + li * 0.18 + ci * 0.045}s` }}
+                      >
+                        {ch}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              ))}
             </h1>
 
             {/* Typewriter Role */}
@@ -126,24 +166,32 @@ const Hero = () => {
 
         {/* RIGHT — Portrait */}
         <div className="flex justify-center items-center order-1 md:order-2">
-          <div className="relative w-64 md:w-80">
-            {/* Enso ring — sits behind the portrait's transparent edges */}
-            <div className="enso absolute inset-0 m-auto w-56 h-56 md:w-72 md:h-72 rounded-full" aria-hidden="true" />
+          <div
+            ref={portraitRef}
+            className="relative w-72 md:w-96 xl:w-[28rem] aspect-square transition-transform duration-500 ease-out will-change-transform"
+          >
+            {/* Enso ring — offset outline around the portrait disc */}
+            <div className="enso absolute -inset-4 md:-inset-5" aria-hidden="true" />
 
-            {/* Portrait — transparent cutout, uncropped */}
-            <div className="relative w-full aspect-[1305/1205]">
-              <Image
-                src="/olatunde-portrait.webp"
-                alt="Olatunde Adegboyebo"
-                fill
-                className="object-contain"
-                priority
-              />
+            {/* Portrait disc — clips the cutout so the shoulders fade into the circle */}
+            <div className="absolute inset-0 rounded-full overflow-hidden bg-paper-2 border border-paper-3">
+              <div className="absolute inset-x-0 bottom-0 aspect-[1305/1205]">
+                <Image
+                  src="/olatunde-portrait.webp"
+                  alt="Olatunde Adegboyebo"
+                  fill
+                  sizes="(min-width: 1280px) 28rem, (min-width: 768px) 24rem, 18rem"
+                  className="object-contain object-bottom"
+                  priority
+                />
+              </div>
             </div>
 
-            {/* Hanko-style seal accent */}
-            <div className="absolute -bottom-3 -right-3 md:-bottom-4 md:-right-4 w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent flex items-center justify-center animate-float-soft">
-              <span className="font-mincho text-paper text-lg md:text-xl leading-none">緒</span>
+            {/* Hanko-style seal accent — sits on the disc's edge at 45° */}
+            <div className="absolute left-[85.4%] top-[85.4%] -translate-x-1/2 -translate-y-1/2">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent ring-4 ring-paper flex items-center justify-center animate-float-soft">
+                <span className="font-mincho text-paper text-lg md:text-xl leading-none">緒</span>
+              </div>
             </div>
           </div>
         </div>

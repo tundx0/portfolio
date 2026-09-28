@@ -8,6 +8,7 @@ import {
   Skills,
   Footer,
 } from "@/components";
+import Reveal from "@/components/ui/Reveal";
 
 export default function Home() {
   return (
@@ -15,15 +16,25 @@ export default function Home() {
       <Header />
       <Hero />
       <div className="hairline max-w-7xl mx-auto" />
-      <About />
+      <Reveal>
+        <About />
+      </Reveal>
       <div className="hairline max-w-7xl mx-auto" />
-      <Skills />
+      <Reveal>
+        <Skills />
+      </Reveal>
       <div className="hairline max-w-7xl mx-auto" />
-      <Qualification />
+      <Reveal>
+        <Qualification />
+      </Reveal>
       <div className="hairline max-w-7xl mx-auto" />
-      <Portfolio />
+      <Reveal>
+        <Portfolio />
+      </Reveal>
       <div className="hairline max-w-7xl mx-auto" />
-      <Contact />
+      <Reveal>
+        <Contact />
+      </Reveal>
       <Footer />
     </main>
   );

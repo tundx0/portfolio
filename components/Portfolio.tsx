@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import ArchDiagram, { type Arch } from "@/components/ui/ArchDiagram";
 
 interface Project {
   id: number;
@@ -14,6 +15,7 @@ interface Project {
   docs?: string;
   featured?: boolean;
   status: "Live" | "In Progress" | "Open Source";
+  arch: Arch;
 }
 
 const projects: Project[] = [
@@ -34,6 +36,17 @@ const projects: Project[] = [
     docs: "https://chainpay-docs.vercel.app",
     featured: true,
     status: "Open Source",
+    arch: {
+      nodes: [
+        { id: "sdk", label: "Widget SDK", col: 0, row: 0 },
+        { id: "api", label: "REST API", col: 1, row: 0, accent: true },
+        { id: "db", label: "PostgreSQL", col: 2, row: 0 },
+        { id: "watch", label: "Chain watcher", col: 0, row: 1 },
+        { id: "flow", label: "Inngest flows", col: 1, row: 1 },
+        { id: "hook", label: "Signed webhooks", col: 2, row: 1 },
+      ],
+      edges: [["sdk", "api"], ["api", "db"], ["api", "flow"], ["watch", "flow"], ["flow", "hook"]],
+    },
   },
   {
     id: 2,
@@ -48,6 +61,16 @@ const projects: Project[] = [
     github: "https://github.com/tundx0/job-search-assistant",
     featured: true,
     status: "Open Source",
+    arch: {
+      nodes: [
+        { id: "jd", label: "Job description", col: 0, row: 0 },
+        { id: "llm", label: "LLM analyzer", col: 1, row: 0, accent: true },
+        { id: "cv", label: "ATS resume", col: 2, row: 0 },
+        { id: "me", label: "Your profile", col: 0, row: 1 },
+        { id: "cl", label: "Cover letter", col: 2, row: 1 },
+      ],
+      edges: [["jd", "llm"], ["me", "llm"], ["llm", "cv"], ["llm", "cl"]],
+    },
   },
   {
     id: 3,
@@ -62,6 +85,16 @@ const projects: Project[] = [
     github: "https://github.com/tundx0/go-movies-backend",
     featured: false,
     status: "Open Source",
+    arch: {
+      nodes: [
+        { id: "client", label: "HTTP client", col: 0, row: 0 },
+        { id: "router", label: "Go router", col: 1, row: 0, accent: true },
+        { id: "handlers", label: "Handlers", col: 2, row: 0 },
+        { id: "mw", label: "Middleware", col: 1, row: 1 },
+        { id: "store", label: "Movie store", col: 2, row: 1 },
+      ],
+      edges: [["client", "router"], ["router", "mw"], ["router", "handlers"], ["handlers", "store"]],
+    },
   },
   {
     id: 4,
@@ -76,6 +109,16 @@ const projects: Project[] = [
     github: "https://github.com/tundx0/tiny-house",
     featured: false,
     status: "Open Source",
+    arch: {
+      nodes: [
+        { id: "ui", label: "React UI", col: 0, row: 0 },
+        { id: "gql", label: "GraphQL API", col: 1, row: 0, accent: true },
+        { id: "res", label: "Resolvers", col: 2, row: 0 },
+        { id: "schema", label: "TS schema", col: 1, row: 1 },
+        { id: "db", label: "Database", col: 2, row: 1 },
+      ],
+      edges: [["ui", "gql"], ["gql", "res"], ["gql", "schema"], ["res", "db"]],
+    },
   },
   {
     id: 5,
@@ -90,6 +133,16 @@ const projects: Project[] = [
     github: "https://github.com/tundx0/Escrow-blockchain-app",
     featured: false,
     status: "Open Source",
+    arch: {
+      nodes: [
+        { id: "buyer", label: "Buyer", col: 0, row: 0 },
+        { id: "escrow", label: "Escrow contract", col: 1, row: 0, accent: true },
+        { id: "seller", label: "Seller", col: 2, row: 0 },
+        { id: "qr", label: "QR checkout", col: 0, row: 1 },
+        { id: "chat", label: "EIP-191 chat", col: 1, row: 1 },
+      ],
+      edges: [["buyer", "escrow"], ["escrow", "seller"], ["qr", "escrow"], ["escrow", "chat"]],
+    },
   },
 ];
 
@@ -221,6 +274,10 @@ const FeaturedCard = ({ project }: { project: Project }) => (
 
     {/* Right — 2 cols */}
     <div className="md:col-span-2 space-y-6 md:pl-8 md:border-l md:border-[color:var(--line)] h-full flex flex-col justify-between">
+      <div className="arch-panel p-3">
+        <ArchDiagram arch={project.arch} label={project.title} />
+      </div>
+
       <div>
         <p className="font-sans-jp text-[0.65rem] text-ink-muted tracking-[0.25em] uppercase mb-4">
           Tech Stack
@@ -258,6 +315,10 @@ const FeaturedCard = ({ project }: { project: Project }) => (
 
 const SmallCard = ({ project }: { project: Project }) => (
   <div className="card group p-7 space-y-4 flex flex-col">
+    <div className="arch-panel p-3 -mx-2 -mt-2 mb-2">
+      <ArchDiagram arch={project.arch} label={project.title} />
+    </div>
+
     <div className="flex items-start justify-between">
       <span className={`font-sans-jp text-[0.6rem] tracking-[0.25em] uppercase ${statusColor(project.status)}`}>
         {project.status}

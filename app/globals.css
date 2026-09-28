@@ -9,20 +9,49 @@
    washi paper · sumi ink · shu-iro vermilion
 ============================= */
 :root {
-  --paper:      #f6f4ef;   /* washi off-white */
-  --paper-2:    #efece4;   /* subtle panel */
-  --paper-3:    #e8e4da;   /* deeper panel */
+  /* Stored as RGB channels so Tailwind opacity modifiers work (e.g. text-ink-faint/50) */
+  --paper-rgb:      246 244 239;   /* washi off-white */
+  --paper-2-rgb:    239 236 228;   /* subtle panel */
+  --paper-3-rgb:    232 228 218;   /* deeper panel */
 
-  --ink:        #1c1a17;   /* sumi black (warm) */
-  --ink-soft:   #45413b;   /* soft ink */
-  --ink-muted:  #8a847a;   /* muted / captions */
-  --ink-faint:  #b6b0a4;   /* faintest text */
+  --ink-rgb:        28 26 23;      /* sumi black (warm) */
+  --ink-soft-rgb:   69 65 59;      /* soft ink */
+  --ink-muted-rgb:  138 132 122;   /* muted / captions */
+  --ink-faint-rgb:  182 176 164;   /* faintest text */
 
-  --line:       rgba(28, 26, 23, 0.12);  /* hairline border */
-  --line-soft:  rgba(28, 26, 23, 0.06);
+  --accent-rgb:     168 65 42;     /* shu-iro / vermilion */
+  --accent-ink:     #8f3521;       /* darker vermilion */
 
-  --accent:     #a8412a;   /* shu-iro / vermilion */
-  --accent-ink: #8f3521;   /* darker vermilion */
+  --paper:     rgb(var(--paper-rgb));
+  --paper-2:   rgb(var(--paper-2-rgb));
+  --paper-3:   rgb(var(--paper-3-rgb));
+  --ink:       rgb(var(--ink-rgb));
+  --ink-soft:  rgb(var(--ink-soft-rgb));
+  --ink-muted: rgb(var(--ink-muted-rgb));
+  --ink-faint: rgb(var(--ink-faint-rgb));
+  --accent:    rgb(var(--accent-rgb));
+
+  --line:       rgb(var(--ink-rgb) / 0.12);  /* hairline border */
+  --line-soft:  rgb(var(--ink-rgb) / 0.06);
+
+  color-scheme: light;
+}
+
+/* Sumi night — ink-dark paper, washi-coloured text */
+:root[data-theme="dark"] {
+  --paper-rgb:      21 20 18;
+  --paper-2-rgb:    30 28 25;
+  --paper-3-rgb:    40 37 33;
+
+  --ink-rgb:        236 231 221;
+  --ink-soft-rgb:   196 189 177;
+  --ink-muted-rgb:  140 133 122;
+  --ink-faint-rgb:  96 91 83;
+
+  --accent-rgb:     214 104 78;
+  --accent-ink:     #e58a70;
+
+  color-scheme: dark;
 }
 
 * {
@@ -270,8 +299,12 @@ body {
 .nav-link:hover {
   color: var(--ink);
 }
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link[aria-current]::after {
   width: 100%;
+}
+.nav-link[aria-current] {
+  color: var(--ink);
 }
 
 /* =============================
@@ -300,15 +333,66 @@ body {
   50%      { transform: translateY(-8px); }
 }
 
+@keyframes rise {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+
 .animate-fade-up { animation: fade-up 0.9s ease forwards; }
 .animate-fade-in { animation: fade-in 1.2s ease forwards; }
 .animate-float-soft { animation: float-soft 6s ease-in-out infinite; }
 
+/* Letters rise out of a clipped line, one after another */
+.rise-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+}
+.rise-char {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) forwards;
+}
+
+/* Architecture sketches on project cards — lines flow while the card is hovered */
+.arch-panel {
+  background-color: var(--paper-2);
+  background-image: radial-gradient(rgb(var(--ink-rgb) / 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+  border: 1px solid var(--line);
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -12; }
+}
+.card:hover .arch-edge {
+  animation: dash-flow 0.9s linear infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.reveal.is-shown {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .animate-fade-in,
-  .animate-float-soft {
+  .animate-float-soft,
+  .rise-char,
+  .card:hover .arch-edge {
     animation: none;
+    transform: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
   html { scroll-behavior: auto; }
 }

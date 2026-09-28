@@ -1,5 +1,7 @@
 "use client";
 
+import CountUp from "@/components/ui/CountUp";
+
 const About = () => {
   const handleDownloadClick = () => {
     const link = document.createElement("a");
@@ -28,17 +30,9 @@ const About = () => {
         <h2 className="section-title">Who I Am</h2>
       </div>
 
-      <div className="relative max-w-3xl">
-        {/* Decorative kanji accent — 私 ("I / myself") */}
-        <span
-          className="hidden md:block absolute -top-16 -right-8 lg:-right-16 font-mincho text-ink-faint/15 text-[10rem] leading-none select-none pointer-events-none"
-          aria-hidden="true"
-        >
-          私
-        </span>
-
+      <div className="grid lg:grid-cols-12 gap-16 lg:gap-12">
         {/* Content */}
-        <div className="relative space-y-6">
+        <div className="lg:col-span-7 space-y-8">
           <div className="space-y-5 text-ink-soft leading-relaxed font-light">
             <p>
               I&apos;m a{" "}
@@ -64,22 +58,8 @@ const About = () => {
             </p>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-6 pt-6 border-t border-[color:var(--line)]">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="font-mincho text-3xl font-semibold text-ink">
-                  {stat.value}
-                </div>
-                <p className="font-sans-jp text-[0.68rem] text-ink-muted tracking-[0.2em] uppercase mt-1">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
           {/* Download CV */}
-          <button onClick={handleDownloadClick} className="btn mt-4">
+          <button onClick={handleDownloadClick} className="btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
               <polyline points="7 10 12 15 17 10" />
@@ -87,6 +67,33 @@ const About = () => {
             </svg>
             Download CV
           </button>
+        </div>
+
+        {/* Stats — right column */}
+        <div className="relative lg:col-span-5 lg:pl-12 lg:border-l lg:border-[color:var(--line)]">
+          {/* Decorative kanji accent — 私 ("I / myself") */}
+          <span
+            className="hidden md:block absolute -top-10 right-0 font-mincho text-ink-faint/15 text-[12rem] leading-none select-none pointer-events-none"
+            aria-hidden="true"
+          >
+            私
+          </span>
+
+          <div className="relative grid grid-cols-2 border-t border-l border-[color:var(--line)]">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="p-6 md:p-8 border-r border-b border-[color:var(--line)]"
+              >
+                <div className="font-mincho text-4xl md:text-5xl font-semibold text-ink">
+                  <CountUp value={stat.value} />
+                </div>
+                <p className="font-sans-jp text-[0.68rem] text-ink-muted tracking-[0.2em] uppercase mt-3">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
